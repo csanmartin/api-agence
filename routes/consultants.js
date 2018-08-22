@@ -41,8 +41,8 @@ router.post('/getDataForReport/:minDate/:maxDate/', function (req, res, next) {
         'INNER JOIN cao_salario ON cao_os.co_usuario = cao_salario.co_usuario \n' +
         'INNER JOIN cao_usuario ON cao_os.co_usuario = cao_usuario.co_usuario\n' +
         'WHERE cao_os.co_usuario IN (:consultants) AND cao_fatura.data_emissao BETWEEN :minDate AND :maxDate \n' +
-        'GROUP BY MONTH(cao_fatura.data_emissao), YEAR(cao_fatura.data_emissao), cao_usuario.co_usuario \n' +
-        'ORDER BY YEAR(cao_fatura.data_emissao), MONTH(cao_fatura.data_emissao), cao_usuario.co_usuario, cao_salario.brut_salario;',
+        'GROUP BY MONTH(cao_fatura.data_emissao), YEAR(cao_fatura.data_emissao), cao_usuario.co_usuario, cao_salario.brut_salario \n' +
+        'ORDER BY YEAR(cao_fatura.data_emissao), MONTH(cao_fatura.data_emissao), cao_usuario.co_usuario;',
         {
             replacements: {consultants: consultants, minDate: minDate, maxDate: maxDate},
             type: sequelize.QueryTypes.SELECT
@@ -88,8 +88,8 @@ router.post('/getDataForBarChart/:minDate/:maxDate/', function (req, res, next) 
         'INNER JOIN cao_salario ON cao_os.co_usuario = cao_salario.co_usuario \n' +
         'INNER JOIN cao_usuario ON cao_os.co_usuario = cao_usuario.co_usuario \n' +
         'WHERE cao_os.co_usuario IN (:consultants) AND cao_fatura.data_emissao BETWEEN :minDate AND :maxDate \n' +
-        'GROUP BY MONTH(cao_fatura.data_emissao), YEAR(cao_fatura.data_emissao), cao_usuario.co_usuario \n' +
-        'ORDER BY YEAR(cao_fatura.data_emissao), MONTH(cao_fatura.data_emissao), cao_usuario.co_usuario, cao_salario.brut_salario;',
+        'GROUP BY MONTH(cao_fatura.data_emissao), YEAR(cao_fatura.data_emissao), cao_usuario.co_usuario, cao_salario.brut_salario \n' +
+        'ORDER BY YEAR(cao_fatura.data_emissao), MONTH(cao_fatura.data_emissao), cao_usuario.co_usuario;',
         {
             replacements: {consultants: consultants, minDate: minDate, maxDate: maxDate},
             type: sequelize.QueryTypes.SELECT
